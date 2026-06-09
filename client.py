@@ -148,9 +148,9 @@ async def main():
                 print("Type /back or /leave to exit the room and choose another user\n")
                 print("Type /quit to exit the application\n")
 
+                terminate = asyncio.Event()
                 try:
                     async with websockets.connect(url) as ws:
-                        terminate = asyncio.Event()
                         receive_task = asyncio.create_task(receive_messages(ws))
                         send_task = asyncio.create_task(send_messages(ws, terminate))
 
